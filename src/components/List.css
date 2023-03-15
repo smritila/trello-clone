@@ -1,0 +1,27 @@
+.list-container {
+  width: 250px;
+  height: 300px;
+  background-color: #ccc;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.list-header {
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.btn {
+  width: 225px;
+  padding: 6px;
+  border: none;
+  background-color: aliceblue;
+}
+
+.btn:hover {
+  background-color: #666664;
+  border-radius: 3px;
+}
