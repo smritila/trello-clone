@@ -6,30 +6,25 @@ import ListAddNewForm from "./ListAddNewForm";
 import "./List.css";
 
 function List() {
-  const [isVisibleForm, toggleFormVisibility] = useState(false);
+  const [cardList, updateCardList] = useState([
+    "html",
+    "css",
+    "js",
+    "python",
+    "php",
+  ]);
 
-  let dynamicAddNewTemplate = null;
-  if (isVisibleForm) {
-    dynamicAddNewTemplate = (
-      <ListAddNewForm hideForm={() => toggleFormVisibility(false)} />
-    );
-  } else {
-    dynamicAddNewTemplate = (
-      <button className="btn" onClick={() => toggleFormVisibility(true)}>
-        Add a card
-      </button>
-    );
-  }
+  const createListCard = (cardText) => {
+    return <ListCard text={cardText} />;
+  };
+
+  const listCardComponents = cardList.map(createListCard);
 
   return (
     <div className="list-container">
       <div className="list-header">Ongoing</div>
-      <div className="list-card-items">
-        <ListCard text="JS" />
-        <ListCard text="CSS" />
-        <ListCard text="HTML 5" />
-      </div>
-      {dynamicAddNewTemplate}
+      <div className="list-card-items">{listCardComponents}</div>
+      <ListAddNewForm />
     </div>
   );
 }
