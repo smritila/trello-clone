@@ -43,3 +43,18 @@ textarea {
   border-radius: 3px;
   margin: 5px;
 }
+
+.list-card {
+  width: 100%;
+  padding: 8px;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 3px;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.list-card:hover {
+  background-color: #a9a9a9;
+  cursor: pointer;
+}
