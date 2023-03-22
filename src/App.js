@@ -4,9 +4,9 @@ import "./App.css";
 export default function App() {
   return (
     <div className="App">
-      <List />
-      <List />
-      <List />
+      <List headerText="Ongoing" />
+      <List headerText="Delayed" />
+      <List headerText="Finished" />
     </div>
   );
 }

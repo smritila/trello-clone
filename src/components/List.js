@@ -4,20 +4,24 @@ import ListAddNewForm from "./ListAddNewForm";
 
 import "./List.css";
 
-function List() {
-  const [cardList, updateCardList] = useState(["html", "css", "js"]);
+function List(props) {
+  const [cards, setCardList] = useState([]);
+
+  const updateCardList = (newCard) => {
+    setCardList([...cards, newCard]);
+  };
 
   const createListCard = (cardText) => {
     return <button className="list-card">{cardText}</button>;
   };
 
-  const listCardComponents = cardList.map(createListCard);
+  const listCardComponents = cards.map(createListCard);
 
   return (
     <div className="list-container">
-      <div className="list-header">Ongoing</div>
+      <div className="list-header">{props.headerText}</div>
       <div className="list-card-items">{listCardComponents}</div>
-      <ListAddNewForm />
+      <ListAddNewForm handleAddCard={updateCardList} />
     </div>
   );
 }

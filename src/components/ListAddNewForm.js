@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function ListAddNewForm() {
+function ListAddNewForm(props) {
   const [isVisibleForm, toggleFormVisibility] = useState(false);
+  const [newText, setNewText] = useState("");
+
+  useEffect(() => {
+    if (!isVisibleForm) setNewText("");
+  }, [isVisibleForm]);
 
   let dynamicAddNewTemplate = null;
   if (isVisibleForm) {
@@ -10,8 +15,16 @@ function ListAddNewForm() {
         <textarea
           rows="5"
           placeholder="Enter a little for this card"
-        ></textarea>
-        <button className="btn-list-card">Add Card</button>
+          onInput={(e) => setNewText(e.target.value)}
+        >
+          {newText}
+        </textarea>
+        <button
+          className="btn-list-card"
+          onClick={() => props.handleAddCard(newText)}
+        >
+          Add Card
+        </button>
         <button
           className="btn-list-card"
           onClick={() => toggleFormVisibility(false)}
