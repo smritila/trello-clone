@@ -1,27 +1,24 @@
-import { useState } from "react";
-
 import ListAddNewForm from "./ListAddNewForm";
 
 import "./List.css";
+//object destructuring in place of props.
 
-function List(props) {
-  const [cards, setCardList] = useState([]);
-
-  const updateCardList = (newCard) => {
-    setCardList([...cards, newCard]);
+function List({ listItems, headerText, updateListItems }) {
+  const createListCard = (cardText, id) => {
+    return (
+      <button key={id} className="list-card">
+        {cardText}
+      </button>
+    );
   };
 
-  const createListCard = (cardText) => {
-    return <button className="list-card">{cardText}</button>;
-  };
-
-  const listCardComponents = cards.map(createListCard);
+  const listCardComponents = listItems.map(createListCard);
 
   return (
     <div className="list-container">
-      <div className="list-header">{props.headerText}</div>
+      <div className="list-header">{headerText}</div>
       <div className="list-card-items">{listCardComponents}</div>
-      <ListAddNewForm handleAddCard={updateCardList} />
+      <ListAddNewForm handleAddCard={updateListItems} />
     </div>
   );
 }
