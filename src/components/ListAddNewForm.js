@@ -1,28 +1,39 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function ListAddNewForm(props) {
   const [isVisibleForm, toggleFormVisibility] = useState(false);
   const [newText, setNewText] = useState("");
 
+  const inputRef = useRef(null);
+
+  const focusTextInput = () => {
+    inputRef.current.focus();
+  };
+
+  const addNewCard = () => {
+    props.handleAddCard(newText);
+    setNewText("");
+    focusTextInput();
+  };
+
   useEffect(() => {
     if (!isVisibleForm) setNewText("");
+    else focusTextInput();
   }, [isVisibleForm]);
 
   let dynamicAddNewTemplate = null;
+
   if (isVisibleForm) {
     dynamicAddNewTemplate = (
       <div className="add-new-form">
         <textarea
+          ref={inputRef}
           rows="5"
           placeholder="Enter a little for this card"
-          onInput={(e) => setNewText(e.target.value)}
-        >
-          {newText}
-        </textarea>
-        <button
-          className="btn-list-card"
-          onClick={() => props.handleAddCard(newText)}
-        >
+          value={newText}
+          onChange={(e) => setNewText(e.target.value)}
+        />
+        <button className="btn-list-card" onClick={addNewCard}>
           Add Card
         </button>
         <button
