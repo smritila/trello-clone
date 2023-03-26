@@ -11,8 +11,10 @@ function ListAddNewForm(props) {
   };
 
   const addNewCard = () => {
-    props.handleAddCard(newText);
-    setNewText("");
+    if (newText != "") {
+      props.handleAddCard(newText);
+      setNewText("");
+    }
     focusTextInput();
   };
 
@@ -34,7 +36,7 @@ function ListAddNewForm(props) {
           onChange={(e) => setNewText(e.target.value)}
         />
         <button className="btn-list-card" onClick={addNewCard}>
-          Add Card
+          Add
         </button>
         <button
           className="btn-list-card"
@@ -47,7 +49,7 @@ function ListAddNewForm(props) {
   } else {
     dynamicAddNewTemplate = (
       <button className="btn" onClick={() => toggleFormVisibility(true)}>
-        Add a card
+        Open Form
       </button>
     );
   }
