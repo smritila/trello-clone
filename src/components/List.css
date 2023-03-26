@@ -58,7 +58,3 @@ textarea {
   background-color: #a9a9a9;
   cursor: pointer;
 }
-
-.list-card--dragging {
-  background-color: lightgreen;
-}
